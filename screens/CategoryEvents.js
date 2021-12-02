@@ -1,15 +1,18 @@
 import React from 'react'
 import { FlatList, StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity, Image } from 'react-native'
+import { SharedElement } from 'react-navigation-shared-element';
 import { sliderData } from '../dummyData/data';
 
-const Item = ({ title, image }) => (
-    <TouchableOpacity style={styles.card}>
+const Item = ({ title, image, navigation }) => (
+    <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Event Details', { title, image })}>
         <View style={styles.cardImgWrapper}>
-            <Image
-                source={image}
-                resizeMode="cover"
-                style={styles.cardImg}
-            />
+            <SharedElement id={`item.${image}.image`}>
+                <Image
+                    source={image}
+                    resizeMode="cover"
+                    style={styles.cardImg}
+                />
+            </SharedElement>
         </View>
 
         <View style={styles.cardInfo}>
@@ -21,9 +24,9 @@ const Item = ({ title, image }) => (
     </TouchableOpacity>
 );
 
-const CategoryEvents = () => {
+const CategoryEvents = ({ navigation }) => {
 
-    const renderItem = ({ item }) => <Item title={item.title} image={item.image} />;
+    const renderItem = ({ item }) => <Item title={item.title} image={item.image} navigation={navigation} />;
 
     return (
         <SafeAreaView style={styles.container}>

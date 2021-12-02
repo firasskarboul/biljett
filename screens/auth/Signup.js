@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import {
     StyleSheet,
     Text,
@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 import LottieView from 'lottie-react-native'
 
-const Signup = () => {
+const Signup = ({ navigation }) => {
 
     const [firstName, setFirstName] = useState(null)
     const [lastName, setLastName] = useState(null)
@@ -44,7 +44,7 @@ const Signup = () => {
                                 autoPlay
                                 loop
                             />
-                        : null
+                            : null
                     }
 
                     <View style={styles.innerInputs}>
@@ -84,17 +84,19 @@ const Signup = () => {
                         <TouchableOpacity style={styles.signupButton}>
                             <Text style={styles.signupText}>Sign up</Text>
                         </TouchableOpacity>
-                        <Text>
-                            Already have an account?
-                        </Text>
-                        <TouchableOpacity style={styles.loginButton}>
-                            <Text style={styles.loginText}>Login</Text>
-                        </TouchableOpacity>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text>
+                                Already have an account?
+                            </Text>
+                            <TouchableOpacity style={styles.loginButton} onPress={() => { navigation.navigate('Login') }}>
+                                <Text style={styles.loginText}>Login</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
-        
+
     )
 }
 
@@ -141,7 +143,7 @@ const styles = StyleSheet.create({
     },
 
     loginButton: {
-        marginTop: 10
+        marginLeft: 5
     },
 
     signupText: {

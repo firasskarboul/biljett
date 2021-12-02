@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions } from 'react-native'
 
-const GetStarted = () => {
+const GetStarted = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Image
@@ -10,13 +10,13 @@ const GetStarted = () => {
             />
 
             <View>
-                <TouchableOpacity style={styles.loginButton}>
+                <TouchableOpacity style={styles.loginButton} onPress={() => { navigation.navigate('Login') }}>
                     <Text style={styles.loginText}>
                         Login
                     </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.signupButton}>
+                <TouchableOpacity style={styles.signupButton} onPress={() => { navigation.navigate('Signup') }}>
                     <Text>
                         Sign Up
                     </Text>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around'
     },
-    
+
     logo: {
         width: 250,
         height: 250

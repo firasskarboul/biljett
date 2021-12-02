@@ -16,23 +16,50 @@ import { Provider, useSelector, useDispatch } from 'react-redux';
 import { store } from './store/store';
 import { Init } from './store/actions';
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 
-const Stack = createStackNavigator()
+// const Stack = createStackNavigator()
+const Stack = createSharedElementStackNavigator()
 
 const AuthStack = () => {
   return (
     <Stack.Navigator>
+      <Stack.Screen name="Get Started" component={GetStarted} options={{ headerShown: false }} />
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+      <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }} />
     </Stack.Navigator>
   )
 }
 
 const AppStack = () => {
   return (
-    <View style={styles.container}>
-      <Home />
-      <StatusBar style="auto" />
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+      <Stack.Screen name="Category Events" component={CategoryEvents} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="Event Details"
+        component={EventDetails}
+        options={{
+          headerShown: false,
+          gestureEnabled: true,
+          transitionSpec: {
+            open: {animation: 'timing', config: {duration: 300}},
+            close: {animation: 'timing', config: {duration: 300}}
+          },
+          cardStyleInterpolator: ({ current: { progress } }) => {
+            return {
+              cardStyle: {
+                opacity: progress,
+              }
+            }
+          }
+        }}
+      />
+    </Stack.Navigator>
+    // <View style={styles.container}>
+    //   <CategoryEvents />
+    //   <StatusBar style="auto" />
+    // </View>
   )
 }
 

@@ -14,7 +14,7 @@ import LottieView from 'lottie-react-native'
 import { useDispatch } from 'react-redux'
 import { LoginAction } from '../../store/actions'
 
-const Login = () => {
+const Login = ({ navigation }) => {
 
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
@@ -60,7 +60,7 @@ const Login = () => {
                         <Text>
                             Don't have an account?
                         </Text>
-                        <TouchableOpacity style={styles.signupButton}>
+                        <TouchableOpacity style={styles.signupButton} onPress={() => { navigation.navigate('Signup') }}>
                             <Text style={styles.signupText}>Sign Up</Text>
                         </TouchableOpacity>
                     </View>
