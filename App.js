@@ -7,6 +7,8 @@ import GetStarted from './screens/auth/GetStarted';
 import Login from './screens/auth/Login';
 import Signup from './screens/auth/Signup';
 import Home from './screens/Home';
+import CategoryEvents from './screens/CategoryEvents';
+import Categories from './screens/Categories';
 
 export default function App() {
   let [ fontsLoaded ] = useFonts({
@@ -18,7 +20,7 @@ export default function App() {
   } else {
     return (
       <View style={styles.container}>
-        <Home />
+        <CategoryEvents />
         <StatusBar style="auto" />
       </View>
     );

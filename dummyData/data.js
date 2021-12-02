@@ -25,26 +25,31 @@ export const CategoryData = [
     {
         id: 1,
         title: 'Music',
-        icon: 'ios-musical-notes'
+        icon: 'ios-musical-notes',
+        image: require('../assets/projet-photos/categories/music.jpg')
     },
     {
         id: 2,
         title: 'Gastronomy',
-        icon: 'ios-fast-food'
+        icon: 'ios-fast-food',
+        image: require('../assets/projet-photos/categories/gastronomy.jpg')
     },
     {
         id: 3,
         title: 'Charity Work',
-        icon: 'charity'
+        icon: 'charity',
+        image: require('../assets/projet-photos/categories/charity_work.jpg')
     },
     {
         id: 4,
         title: 'Business',
-        icon: 'business-center'
+        icon: 'business-center',
+        image: require('../assets/projet-photos/categories/business.jpg')
     },
     {
         id: 5,
         title: 'Sports',
-        icon: 'sports-soccer'
+        icon: 'sports-soccer',
+        image: require('../assets/projet-photos/categories/sports.jpg')
     }
 ]

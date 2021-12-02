@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         shadowColor: '#bdc3c7',
         shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.4,
+        shadowOpacity: 0.2,
         shadowRadius: 2,
         elevation: 5,
     },
