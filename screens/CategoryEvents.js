@@ -14,7 +14,7 @@ const Item = ({ title, image }) => (
 
         <View style={styles.cardInfo}>
             <Text style={styles.cardTitle}>{title}</Text>
-            <Text style={styles.cardDetails}>Leadership conference 2021 Edition for every 
+            <Text style={styles.cardDetails}>Leadership conference 2021 Edition for every
                 one who wants learn how to manage companies and developers with scum methodology.</Text>
             <Text>Price : Starts from 50$</Text>
         </View>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: StatusBar.currentHeight || 0,
         backgroundColor: '#ecf0f1',
-      },
+    },
     item: {
         backgroundColor: '#f9c2ff',
         padding: 20,
