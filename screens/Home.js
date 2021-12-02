@@ -15,6 +15,8 @@ import Carousel from 'react-native-snap-carousel';
 import { sliderData, CategoryData } from '../dummyData/data';
 import BannerSlider from '../components/home/BannerSlider';
 import CustomSwitch from '../components/home/CustomSwitch';
+import { useDispatch } from 'react-redux'
+import { LogoutAction } from '../store/actions'
 
 const Home = () => {
 
@@ -26,6 +28,12 @@ const Home = () => {
 
     const onSelectSwitch = (value) => {
         setEventsTab(value)
+    }
+
+    const dispatch = useDispatch()
+
+    const logout = () => {
+        dispatch(LogoutAction())
     }
 
     return (
@@ -51,8 +59,9 @@ const Home = () => {
                     <Text style={styles.headerText}>
                         Upcoming Events
                     </Text>
-                    <TouchableOpacity onPress={() => { }}>
-                        <Text style={styles.seeAllStyle}>See all</Text>
+                    <TouchableOpacity onPress={logout}>
+                        <Text style={styles.seeAllStyle}>Logout</Text>
+                        {/* <Text style={styles.seeAllStyle}>See all</Text> */}
                     </TouchableOpacity>
                 </View>
 

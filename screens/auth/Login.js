@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import {
     StyleSheet,
     Text,
@@ -11,11 +11,19 @@ import {
     Keyboard
 } from 'react-native'
 import LottieView from 'lottie-react-native'
+import { useDispatch } from 'react-redux'
+import { LoginAction } from '../../store/actions'
 
 const Login = () => {
 
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
+
+    const dispatch = useDispatch()
+
+    const submit = () => {
+        dispatch(LoginAction(email, password))
+    }
 
     return (
         <KeyboardAvoidingView
@@ -46,7 +54,7 @@ const Login = () => {
                             placeholder="Password"
                             secureTextEntry
                         />
-                        <TouchableOpacity style={styles.loginButton}>
+                        <TouchableOpacity style={styles.loginButton} onPress={submit}>
                             <Text style={styles.loginText}>Login</Text>
                         </TouchableOpacity>
                         <Text>
@@ -59,7 +67,7 @@ const Login = () => {
                 </View>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
-        
+
     )
 }
 

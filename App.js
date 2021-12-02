@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { useFonts, Roboto_500Medium } from '@expo-google-fonts/roboto';
 import AppLoading from 'expo-app-loading';
 import GetStarted from './screens/auth/GetStarted';
@@ -10,22 +10,78 @@ import Home from './screens/Home';
 import CategoryEvents from './screens/CategoryEvents';
 import Categories from './screens/Categories';
 import EventDetails from './screens/EventDetails';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Provider, useSelector, useDispatch } from 'react-redux';
+import { store } from './store/store';
+import { Init } from './store/actions';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export default function App() {
-  let [ fontsLoaded ] = useFonts({
+const Stack = createStackNavigator()
+
+const AuthStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+    </Stack.Navigator>
+  )
+}
+
+const AppStack = () => {
+  return (
+    <View style={styles.container}>
+      <Home />
+      <StatusBar style="auto" />
+    </View>
+  )
+}
+
+const RootNavigation = () => {
+  let [fontsLoaded] = useFonts({
     Roboto_500Medium,
   });
 
+  const token = useSelector(state => state.AuthReducers.authToken)
+  const [loading, setLoading] = useState(true)
+
+  const dispatch = useDispatch()
+
+  const init = async () => {
+    await dispatch(Init())
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    init()
+  }, [])
+
   if (!fontsLoaded) {
     return <AppLoading />;
+  } else if (loading) {
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <ActivityIndicator size='large' color='black' />
+    </View>
   } else {
     return (
-      <View style={styles.container}>
-        <EventDetails />
-        <StatusBar style="auto" />
-      </View>
+      <NavigationContainer>
+        {
+          token === null ?
+            <AuthStack />
+            :
+            <AppStack />
+
+        }
+      </NavigationContainer>
     );
-  }  
+  }
+}
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <RootNavigation />
+    </Provider>
+  )
 }
 
 const styles = StyleSheet.create({
