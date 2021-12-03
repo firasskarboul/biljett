@@ -51,5 +51,17 @@ export const CategoryData = [
         title: 'Sports',
         icon: 'sports-soccer',
         image: require('../assets/projet-photos/categories/sports.jpg')
+    },
+    {
+        id: 6,
+        title: 'Conferences',
+        icon: 'sports-soccer',
+        image: require('../assets/projet-photos/categories/conference.jpg')
+    },
+    {
+        id: 7,
+        title: 'Festivals and parties',
+        icon: 'sports-soccer',
+        image: require('../assets/projet-photos/categories/festival.jpg')
     }
 ]

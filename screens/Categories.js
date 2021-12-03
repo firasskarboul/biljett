@@ -2,8 +2,8 @@ import React from 'react'
 import { StyleSheet, Text, View, StatusBar, SafeAreaView, TouchableOpacity, Image, FlatList } from 'react-native'
 import { CategoryData } from '../dummyData/data';
 
-const Item = ({ title, image }) => (
-    <TouchableOpacity style={styles.card}>
+const Item = ({ title, image, navigation }) => (
+    <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Category Events')}>
         <View style={styles.cardImgWrapper}>
             <Image
                 source={image}
@@ -26,9 +26,9 @@ const Item = ({ title, image }) => (
     </TouchableOpacity>
 );
 
-const Categories = () => {
+const Categories = ({ navigation }) => {
 
-    const renderItem = ({ item }) => <Item title={item.title} image={item.image} />;
+    const renderItem = ({ item }) => <Item title={item.title} image={item.image} navigation={navigation} />;
 
     return (
         <SafeAreaView style={styles.container}>
